@@ -50,6 +50,7 @@ namespace Log2Console
 
         private readonly Queue<LogMessage> _eventQueue;
         private Timer _logMsgTimer;
+        private string _logFile;
 
         delegate void NotifyLogMsgCallback(LogMessage logMsg);
         delegate void NotifyLogMsgsCallback(LogMessage[] logMsgs);
@@ -86,7 +87,7 @@ namespace Log2Console
 
             // Settings
             _firstStartup = !UserSettings.Load();
-            if (_firstStartup)
+            if (_firstStartup && !LogFileIsSpecifiedOnTheCommandLine())
             {
                 // Initialize default layout
                 UserSettings.Instance.Layout.Set(DesktopBounds, WindowState, logDetailPanel, loggerPanel);
@@ -152,6 +153,13 @@ namespace Log2Console
 
         private const int WM_SIZE = 0x0005;
         private const int SIZE_MINIMIZED = 1;
+
+        public string LogFile
+        {
+            get { return _logFile; }
+            set { _logFile = value; }
+        }
+
         /// <summary>
         /// Catch on minimize event
         /// @author : Asbjørn Ulsberg -=|=- asbjornu@hotmail.com
@@ -188,7 +196,7 @@ namespace Log2Console
 
         protected override void OnShown(EventArgs e)
         {
-            if (_firstStartup)
+            if (_firstStartup && !LogFileIsSpecifiedOnTheCommandLine())
             {
                 MessageBox.Show(
                     this,
@@ -197,6 +205,11 @@ namespace Log2Console
 
                 ShowReceiversForm();
             }
+        }
+
+        private bool LogFileIsSpecifiedOnTheCommandLine()
+        {
+            return !string.IsNullOrWhiteSpace(this.LogFile) && File.Exists(this.LogFile);
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -241,6 +254,18 @@ namespace Log2Console
         {
             // Display Version
             versionLabel.Text = AboutForm.AssemblyTitle + @" v" + AboutForm.AssemblyVersion;
+
+            //Load log file if specified as first argument on the command line
+            if (!string.IsNullOrEmpty(this.LogFile) && File.Exists(this.LogFile))
+            {
+                var fileReceiver = new FileReceiver
+                {
+                    FileToWatch = this.LogFile,
+                    FileFormat = FileReceiver.FileFormatEnums.Log4jXml,
+                    ShowFromBeginning = true
+                };
+                InitializeReceiver(fileReceiver);
+            }
 
             DoubleBuffered = true;
             base.OnLoad(e);

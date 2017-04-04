@@ -19,7 +19,7 @@ namespace Log2Console.Install
         {
             //Adding a command to windows explorer contect menu
             this.Context.LogMessage("Adding Log2Console to File Explorer context menu...");
-            new WindowsExplorerContextMenuInstaller().Install("Log2Console", "Create Something...", Assembly.GetExecutingAssembly().Location, "CreateSomething /exampleParameter=\"%1\"");
+            new WindowsExplorerContextMenuInstaller().Install("Log2Console", "Open in Log2Console...", Assembly.GetExecutingAssembly().Location, "\"%1\"");
             this.Context.LogMessage("Finnished adding Log2Console to File Explorer context menu.");            
             base.Install(stateSaver);
         }
