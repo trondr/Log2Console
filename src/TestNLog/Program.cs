@@ -50,7 +50,7 @@ namespace TestNLog
       _log.Warn("This is a Warning...");
       _log.Fatal("This is a Fatal...");
 
-      _log.Error("This is an error with an exception.", new Exception("The message exception here."));
+      _log.Error(new Exception("The message exception here."),"This is an error with an exception.");
 
       _log.Warn("This is a message on many lines...\nlines...\nlines...\nlines...");
       _log.Warn("This is a message on many lines...\r\nlines...\r\nlines...\r\nlines...");
@@ -87,7 +87,7 @@ namespace TestNLog
         Log.Error("This is an Error from DM...");
         Log.Fatal("This is a Fatal from DM...");
 
-        Log.ErrorException("This is an error from DM with an exception.", new Exception("The message exception here."));
+        Log.Error(new Exception("The message exception here."),"This is an error from DM with an exception.");
       }
     }
   }
@@ -114,7 +114,7 @@ namespace TestNLog
         Log.Error("This is an Error from DT...");
         Log.Fatal("This is a Fatal from DT...");
 
-        Log.ErrorException("This is an error from DT with an exception.", new Exception("The message exception here."));
+        Log.Error(new Exception("The message exception here."),"This is an error from DT with an exception.");
       }
     }
   }
