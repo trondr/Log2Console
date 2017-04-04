@@ -51,7 +51,7 @@
 	<Target Name="BeforeBuild">
 	</Target>-->
   <Target Name="AfterBuild">
-    <GetAssemblyIdentity AssemblyFiles="$(MSBuildProjectDirectory)\..\Log2Console\bin\$(Configuration)\Log2Console.exe">
+    <GetAssemblyIdentity AssemblyFiles="$(MSBuildProjectDirectory)\..\..\bin\$(Configuration)\Log2Console\Log2Console.exe">
       <Output TaskParameter="Assemblies" ItemName="AssemblyVersion" />
     </GetAssemblyIdentity>
     <Copy SourceFiles="$(MSBuildProjectDirectory)\..\..\bin\$(Configuration)\Log2Console.Setup\en-us\$(OutputName).msi" DestinationFiles="$(MSBuildProjectDirectory)\..\..\bin\$(Configuration)\Log2Console.Setup\en-us\$(OutputName).%(AssemblyVersion.Version).msi" />

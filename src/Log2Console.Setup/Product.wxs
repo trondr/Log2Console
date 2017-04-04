@@ -8,7 +8,7 @@
 <?define PackageKeywords="Log2Console" ?>
 <?define CompanyName="Statyk7" ?>
 <?define ProductExeBaseName="Log2Console" ?>
-<?define ProductExeReleaseFolder="..\Log2Console\bin\release" ?>
+<?define ProductExeReleaseFolder="..\..\bin\release\Log2Console" ?>
 <?define ProductHelpLink="http://www.codeplex.com/log2console"?>
 <?define TargetFolderName="Log2Console"?>
 
