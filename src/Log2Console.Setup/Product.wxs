@@ -3,7 +3,7 @@
 <?define ProductName="Log2Console" ?>
 <?define ProductFeature="Log2Console" ?>
 <?define ProductProjectName="Log2Console" ?>
-<?define PackageDescription="Log2Console is an advanced log message viewer for log4net, log4j and log4cxx." ?>
+<?define PackageDescription="Log2Console is an advanced log message viewer for log4net, log4j and log4cxx. This version of Log2Console is built from the source code fork: https://github.com/trondr/Log2Console" ?>
 <?define ProductUpgradeCode="{76F2BD5A-4763-4A97-B4BF-F3F475A62908}" ?>
 <?define PackageKeywords="Log2Console" ?>
 <?define CompanyName="Statyk7" ?>
